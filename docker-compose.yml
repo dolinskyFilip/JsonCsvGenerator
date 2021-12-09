@@ -1,0 +1,12 @@
+version: '2'
+services:
+  json-generator:
+    build: ./JsonGenerator
+    ports:
+      - 9000:9000
+  csv-converter:
+    build: ./CsvConverter
+    ports:
+      - 9001:9001
+    depends_on:
+      - json-generator
