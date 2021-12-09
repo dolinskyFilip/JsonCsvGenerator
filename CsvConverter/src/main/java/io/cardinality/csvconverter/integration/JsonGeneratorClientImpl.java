@@ -1,6 +1,5 @@
 package io.cardinality.csvconverter.integration;
 
-import io.cardinality.csvconverter.integration.model.Position;
 import io.cardinality.csvconverter.model.FlatPosition;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

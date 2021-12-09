@@ -21,7 +21,7 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public List<Position> generatePositions(String size) {
 
-        if (size == null || !size.matches("\\d") || Integer.parseInt(size) <= 0) {
+        if (size == null || !size.matches("^[0-9]*$") || Integer.parseInt(size) <= 0) {
             throw new WrongParameterException("Size parameter should be positive number");
         }
 
