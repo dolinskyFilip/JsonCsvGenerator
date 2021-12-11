@@ -30,10 +30,4 @@ public class PositionControllerImpl implements PositionController{
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<FlatPosition>> getFlatPositionsIndividualFiltered(String size, List<String> properties) {
-        return null;
-    }
-
-
 }

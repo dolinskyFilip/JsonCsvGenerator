@@ -17,7 +17,4 @@ public interface PositionController {
     @PostMapping(path="/generate/json/flat/{size}", produces = "application/json")
     ResponseEntity<List<FlatPosition>> getFlatPositionsFiltered(@PathVariable String size);
 
-    @PostMapping(path="/generate/json/flat/{size}/filter", produces = "application/json")
-    ResponseEntity<List<FlatPosition>> getFlatPositionsIndividualFiltered(@PathVariable String size,
-                                                         @RequestParam(value="property")List<String> properties) ;
 }

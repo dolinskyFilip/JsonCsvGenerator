@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,14 +26,14 @@ public class PositionServiceImpl implements PositionService {
     JsonToCsVConverter converter;
 
     @Override
-    public void getPositions(String size) throws IOException {
+    public byte[] getPositions(String size) throws IOException {
         List<FlatPosition> positions = client.invokeJsonGeneratorService(size);
         List<String> propertiesToInclude = List.of("_type", "_id", "name", "type", "latitude", "longitude");
-        converter.convert(positions, propertiesToInclude);
+        return converter.convert(positions, propertiesToInclude);
     }
 
     @Override
-    public void getFilteredPositions(String size, List<String> params) throws IOException {
+    public byte[] getFilteredPositions(String size, List<String> params) throws IOException {
 
         if (size == null || !size.matches("^[0-9]*$") || Integer.parseInt(size) <= 0) {
             throw new WrongParameterException("Size parameter should be positive number");
@@ -43,8 +42,9 @@ public class PositionServiceImpl implements PositionService {
             throw new WrongParameterException("At least parameter is invalid");
         }
 
-        List<String> positionFields = List.of("_type", "_id", "key", "name", "fullName", "iata_error_code", "type", "country"
-                , "latitude", "longitude", "location_id", "inEurope", "countryCode", "coreCountry", "distance");
+        List<String> positionFields = List.of("_type", "_id", "key", "name", "fullName"
+                , "iata_error_code", "type", "country", "latitude", "longitude"
+                , "location_id", "inEurope", "countryCode", "coreCountry", "distance");
 
         List<String> propertiesToInclude = positionFields.stream()
                 .filter(params::contains)
@@ -52,9 +52,7 @@ public class PositionServiceImpl implements PositionService {
 
         List<FlatPosition> positions = client.invokeJsonGeneratorService(size);
 
-        converter.convert(positions, propertiesToInclude);
-
-
+        return converter.convert(positions, propertiesToInclude);
     }
 }
 

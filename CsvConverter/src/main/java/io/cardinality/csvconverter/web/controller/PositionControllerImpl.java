@@ -1,4 +1,4 @@
-package io.cardinality.csvconverter.controller;
+package io.cardinality.csvconverter.web.controller;
 
 
 import io.cardinality.csvconverter.service.PositionService;
@@ -18,27 +18,23 @@ public class PositionControllerImpl implements PositionController {
 
     @Override
     public ResponseEntity<?> getCsvPositions(String size) {
-
         try {
-            service.getPositions(size);
+            byte[] result = service.getPositions(size);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
     public ResponseEntity<?> getCsvPositionsByParameter(String size, List<String> params) {
-
         try {
-            service.getFilteredPositions(size, params);
+            byte[] result = service.getFilteredPositions(size, params);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-
 }

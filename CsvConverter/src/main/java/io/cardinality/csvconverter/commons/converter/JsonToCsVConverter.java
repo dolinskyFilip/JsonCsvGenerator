@@ -11,7 +11,6 @@ import io.cardinality.csvconverter.model.FlatPosition;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class JsonToCsVConverter {
 
-    public void convert(List<FlatPosition> positions, List<String> propertiesToInclude) throws IOException {
+    public byte[] convert(List<FlatPosition> positions, List<String> propertiesToInclude) throws IOException {
 
         String[] properties = propertiesToInclude.toArray(String[]::new);
 
@@ -37,12 +36,14 @@ public class JsonToCsVConverter {
         CsvMapper csvMapper = new CsvMapper();
 
         log.info("Converting JSON to CSV");
-        csvMapper.writerFor(JsonNode.class)
+
+        byte[] result = csvMapper.writerFor(JsonNode.class)
                 .with(csvSchema)
-                .writeValue(new File("src/main/resources/orderLines.csv"), jsonTree);
+                .writeValueAsBytes(jsonTree);
 
-        log.info("CSV created: src/main/resources/orderLines.csv");
+        log.info("CSV created");
 
+        return result;
 
     }
 

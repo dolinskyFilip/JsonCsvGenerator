@@ -1,7 +1,7 @@
 version: '3'
 services:
   csv-converter:
-    image: csv-converter:1
+    image: csv-converter
     build:
       context: ./CsvConverter
       dockerfile: Dockerfile
@@ -10,7 +10,7 @@ services:
     ports:
       - 9001:9001
   json-generator:
-    image: json-generator:1
+    image: json-generator
     build:
       context: ./JsonGenerator
       dockerfile: Dockerfile

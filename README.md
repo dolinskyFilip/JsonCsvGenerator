@@ -28,10 +28,10 @@ _/generate/csv/{size}/filter?property_
 _e.g. http://localhost:9000/generate/json/100_
 
 # GENERATE JSON LIST AND CONVERT TO CSV
-**Use endpoint /generate/csv/{size} with POST method and set the size as pathvariable** <br />
+**Use endpoint /generate/csv/{size} with GET method and set the size as pathvariable** <br />
 _e.g. http://localhost:9001/generate/csv/100_ <br />
-CsvConverter will fetch generated JSON list from JsonGenerator and convert it .csv file under: {user.dir}
+CsvConverter will fetch generated JSON list from JsonGenerator and convert it to .csv file 
 
-**Use endpoint /generate/csv/{size} with POST method and set the size as pathvariable** <br />
+**Use endpoint /generate/csv/{size} with GET method and set the size as pathvariable** <br />
 _e.g. http://localhost:9001/generate/csv/10000/filter?property=_id&property=latitude&property=longitude_ <br />
-**CsvConverter will fetch generated JSON list from JsonGenerator and convert it .csv file under:_{user.dir}_ with only parameters set**
+CsvConverter will fetch generated JSON list from JsonGenerator and convert it to .csv file with only parameters set
