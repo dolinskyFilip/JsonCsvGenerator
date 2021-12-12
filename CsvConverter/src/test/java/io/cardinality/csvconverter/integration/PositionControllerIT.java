@@ -1,7 +1,9 @@
 package io.cardinality.csvconverter.integration;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cardinality.csvconverter.CsvconverterApplication;
+import io.cardinality.csvconverter.model.FlatPosition;
 import io.cardinality.csvconverter.web.advice.ErrorResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -16,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -61,6 +64,7 @@ public class PositionControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
 
+        Assertions.assertThat(result).isNotNull();
 
     }
 
@@ -94,6 +98,8 @@ public class PositionControllerIT {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
 
+
+        Assertions.assertThat(result).isNotNull();
     }
 
     @Test
