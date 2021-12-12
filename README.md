@@ -8,6 +8,7 @@ docker <br />
 postman or similar tool <br />
 # How to run 
 Clone repo <br />
+Build the applications with mvn clean package <br />
 Run command docker-compose up <br />
 Application JsonApplication should be available on http://localhost:9000 <br />
 Application CsvConverter should be available on http://localhost:9001 <br />
