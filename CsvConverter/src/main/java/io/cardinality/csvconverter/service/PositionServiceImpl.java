@@ -27,6 +27,9 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public byte[] getPositions(String size) throws IOException {
+        if (size == null || !size.matches("^[0-9]*$") || Integer.parseInt(size) <= 0) {
+            throw new WrongParameterException("Size parameter should be positive number");
+        }
         List<FlatPosition> positions = client.invokeJsonGeneratorService(size);
         List<String> propertiesToInclude = List.of("_type", "_id", "name", "type", "latitude", "longitude");
         return converter.convert(positions, propertiesToInclude);
@@ -49,6 +52,10 @@ public class PositionServiceImpl implements PositionService {
         List<String> propertiesToInclude = positionFields.stream()
                 .filter(params::contains)
                 .collect(Collectors.toList());
+
+        if (propertiesToInclude.isEmpty()) {
+            throw new WrongParameterException("Your parameter(s) doesn't match with Position fields");
+        }
 
         List<FlatPosition> positions = client.invokeJsonGeneratorService(size);
 

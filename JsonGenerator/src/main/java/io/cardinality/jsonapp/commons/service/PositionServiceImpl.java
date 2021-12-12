@@ -43,7 +43,6 @@ public class PositionServiceImpl implements PositionService {
                 .collect(Collectors.toList());
     }
 
-
     private EasyRandomParameters createParameters() {
 
         return new EasyRandomParameters()
@@ -64,6 +63,5 @@ public class PositionServiceImpl implements PositionService {
             result.append(chars.charAt(index));
         }
         return result.toString();
-
     }
 }
